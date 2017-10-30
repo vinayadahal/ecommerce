@@ -1,0 +1,14 @@
+*{
+    margin:0px;
+    padding: 0px;
+    font-family: sans-serif;
+}
+
+.item_count{
+    color: #fff;
+    background-color: #ff0000;
+    padding: 0px 4px;
+    border-radius: 10px;
+    display: none;
+    font-weight: bold;
+}
