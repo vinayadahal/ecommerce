@@ -7,7 +7,7 @@ define('host', 'localhost'); // Your hostname(if possible adding IP address will
 
 define('username', 'root'); // Your username.
 
-define('password', ''); // Your password.
+define('password', 'root'); // Your password.
 
 define('database', 'ecommerce'); // Your database name.
 

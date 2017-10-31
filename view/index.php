@@ -38,12 +38,12 @@ require_once './includes/header.php';
                         <div class="row">
 
                             <div class="col-md-6">
-
-                                <p class="lead"><?php echo $row["price"] . ' Rs'; ?></p>
+                                <!--<p class="lead">-->
+                                <?php echo $row["price"] . ' Rs'; ?>
+                                <!--</p>-->
                             </div>
                             <div class="col-md-6">
                                 <a class="btn btn-success" href="javascript:void(0);" onclick="hide_product('thumb<?php echo $row["id"]; ?>')" >Add to cart</a>
-                                <!--href="<?php echo base_url; ?>/addToCart/<?php echo $row["id"]; ?>"-->
                             </div>
                         </div>
                     </div>

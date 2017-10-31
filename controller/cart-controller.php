@@ -23,8 +23,6 @@ if (isset($_REQUEST['action'], $_REQUEST['id']) && !empty($_REQUEST['action']) &
         $session_key_id = ($_REQUEST['id'] - 1);
         updateItemCount($session_key_id, $count);
     } elseif ($_REQUEST['action'] == 'removeFromCart' && !empty($_REQUEST['id'])) {
-//        $deleteItem = $cart->remove($_REQUEST['id']);
-//        header("Location: viewCart.php");
         $session_key_id = ($_REQUEST['id'] - 1);
         removeItem($session_key_id);
     } elseif ($_REQUEST['action'] == 'placeOrder' && $cart->total_items() > 0 && !empty($_SESSION['sessCustomerID'])) {
@@ -76,7 +74,8 @@ function updateItemCount($array_id, $count) {
     $subtotal = ($count * $_SESSION['cart_items'][$array_id]['price']);
     $_SESSION['cart_items'][$array_id]['qty'] = $count;
     $_SESSION['cart_items'][$array_id]['subtotal'] = $subtotal;
-    echo $subtotal;
+//    echo "[".$subtotal.",".."]";
+//    var cars = ["Saab", "Volvo", "BMW"];
 }
 
 function removeItem($array_id) {

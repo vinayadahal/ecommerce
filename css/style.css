@@ -4,6 +4,27 @@
     font-family: sans-serif;
 }
 
+.header_icons{
+    float: left;
+    padding-right: 3px;
+    font-size: 18px;
+}
+
+.searchBarInput{
+    float: left;
+    display: inline-block;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.searchBarButton{
+    float: left;
+    display: inline-block;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    border-left: 0;
+}
+
 .item_count{
     color: #fff;
     background-color: #ff0000;
@@ -11,4 +32,13 @@
     border-radius: 10px;
     display: none;
     font-weight: bold;
+}
+
+.table td{
+    width: 200px;
+}
+
+.table td input{
+    width: 100px;
+    display: inline;
 }

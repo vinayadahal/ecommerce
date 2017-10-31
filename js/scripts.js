@@ -1,16 +1,6 @@
 $(document).ready(function () {
 });
 
-//function updateCartItem(obj, id) {
-//    $.get("cartAction.php", {action: "updateCartItem", id: id, qty: obj.value}, function (data) {
-//        if (data == 'ok') {
-//            location.reload();
-//        } else {
-//            alert('Cart update failed, please try again.');
-//        }
-//    });
-//}
-
 
 function hide_product(item_id) {
     var url = $("#" + item_id).attr("link");
@@ -26,7 +16,7 @@ function ajax_addToCart(item_id, url) {
         $("#" + item_id).fadeOut(600);
         $("#" + item_id).remove();
         var value = $("#item_count").html();
-        if (value === "") {
+        if (value === "" || value === "0") {
             $("#item_count").html(1);
         }
         if (value >= 1) {
@@ -60,6 +50,10 @@ function removeFromCart(url) {
         success: function (response) {
             $("#item" + itemId).fadeOut(600);
             $("#item" + itemId).remove();
+            var item_count = $(".item").length;
+            if (item_count === 0) {
+                $("#tbl_content").html("<tr><td colspan=\"5\"><p>Your cart is empty.....</p></td>");
+            }
         },
         failure: function (response) {
             console.log(response);

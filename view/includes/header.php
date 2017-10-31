@@ -23,41 +23,32 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li class="active">
-                        <a href="<?php echo base_url; ?>"><i class="fa fa-home fa-2x"></i> Home</a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">One more separated link</a></li>
-                        </ul>
+                        <a href="<?php echo base_url; ?>">
+                            <i class="fa fa-home header_icons"></i> Home
+                        </a>
                     </li>
                 </ul>
                 <form class="navbar-form navbar-left">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search Products Here">
+                        <input type="text" class="form-control searchBarInput" placeholder="Search...">
+                        <button type="submit" class="btn btn-default searchBarButton" ><i class="fa fa-search"></i></button>
                     </div>
-                    <button type="submit" class="btn btn-default">Search</button>
+
                 </form>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <a href="<?php echo base_url; ?>/shopping-cart/" class="cart-link">
-                            <i class="fa fa-shopping-cart fa-2x"></i> Shopping Cart 
+                            <i class="fa fa-shopping-cart header_icons"></i> Shopping Cart 
                             <?php if (isset($_SESSION['cart_items'])) { ?>
                                 <sup id="item_count" class="item_count" style="display: initial;"><?php echo count($_SESSION['cart_items']); ?></sup>
                             <?php } else { ?>
                                 <sup id="item_count" class="item_count"></sup>
-                                <?php } ?>
+                            <?php } ?>
                         </a>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-user fa-2x" ></i> User Account 
+                            <i class="fa fa-user header_icons" ></i> User Account 
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
