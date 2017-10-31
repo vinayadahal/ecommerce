@@ -33,7 +33,8 @@ function update_itemCount(url, obj) {
         type: 'get',
         cache: false,
         success: function (response) {
-            $("#subtotal" + subtotal_count).html("Rs. " + response + "/-");
+            $("#subtotal" + subtotal_count).html(response);
+            grandTotal();
         },
         failure: function (response) {
             console.log(response);
@@ -50,6 +51,7 @@ function removeFromCart(url) {
         success: function (response) {
             $("#item" + itemId).fadeOut(600);
             $("#item" + itemId).remove();
+            grandTotal();
             var item_count = $(".item").length;
             if (item_count === 0) {
                 $("#tbl_content").html("<tr><td colspan=\"5\"><p>Your cart is empty.....</p></td>");
@@ -59,4 +61,13 @@ function removeFromCart(url) {
             console.log(response);
         }
     });
+}
+
+function grandTotal() {
+    var item_count = $(".item").length;
+    var grand_total = 0;
+    for (var i = 1; i <= item_count; i++) {
+        grand_total = grand_total + parseInt($("#subtotal" + i).html());
+    }
+    $("#grand_total").html(grand_total);
 }

@@ -74,8 +74,7 @@ function updateItemCount($array_id, $count) {
     $subtotal = ($count * $_SESSION['cart_items'][$array_id]['price']);
     $_SESSION['cart_items'][$array_id]['qty'] = $count;
     $_SESSION['cart_items'][$array_id]['subtotal'] = $subtotal;
-//    echo "[".$subtotal.",".."]";
-//    var cars = ["Saab", "Volvo", "BMW"];
+    echo $subtotal;
 }
 
 function removeItem($array_id) {

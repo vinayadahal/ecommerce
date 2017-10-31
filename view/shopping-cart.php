@@ -2,8 +2,8 @@
 require_once '../model/product.php';
 require_once './includes/header.php';
 session_start();
+$grand_total = 0;
 ?>
-
 <div class="container">
     <h1>Shopping Cart</h1>
     <table class="table">
@@ -29,8 +29,8 @@ session_start();
                         <td>
                             <input type="number" min="1" max="<?php echo $item['max_quantity']; ?>"  class="form-control text-center" value="<?php echo $item["qty"]; ?>" onchange="update_itemCount('<?php echo base_url; ?>/updateCount/<?php echo $i; ?>', this);"> / <?php echo $item['max_quantity']; ?>
                         </td>
-                        <td id="subtotal<?php echo $i; ?>">
-                            Rs. <?php echo $item["subtotal"]; ?>/-
+                        <td>
+                            Rs. <span id="subtotal<?php echo $i; ?>"><?php echo $item["subtotal"]; ?></span>/-
                         </td>
                         <td>
                             <a onclick="removeFromCart('<?php echo base_url; ?>/removeFromCart/<?php echo $i; ?>')" link="" href="javascript:void(0);" class="btn btn-danger">
@@ -40,6 +40,7 @@ session_start();
                     </tr>
                     <?php
                     $i++;
+                    $grand_total = $grand_total + $item["subtotal"];
                 }
             } else {
                 ?>
@@ -50,14 +51,15 @@ session_start();
             <tr>
                 <td>
                     <a href="<?php echo base_url; ?>" class="btn btn-warning">
-                        <i class="fa fa-list"></i> Continue Shopping
+                        <i class="fa fa-arrow-left"></i> Continue Shopping
                     </a>
                 </td>
                 <td colspan="2"></td>
-                <?php // if ($cart->total_items() > 0) { ?>
-                <td class="text-center" id="grand_total"><strong>Total <?php // echo '$' . $cart->total() . ' USD';  ?></strong></td>
-                <td><a href="checkout.php" class="btn btn-success btn-block">Checkout <i class="fa fa-arrow-circle-right"></i></a></td>
-                        <?php // } ?>
+                <td><strong>Grand Total: Rs.<span id="grand_total"><?php echo $grand_total; ?></span>/-</strong></td>
+                <td>
+                    <a href="checkout.php" class="btn btn-success btn-block">Checkout <i class="fa fa-check"></i>
+                    </a>
+                </td>
             </tr>
         </tfoot>
     </table>
