@@ -24,6 +24,7 @@ RewriteRule    ^addToCart/([0-9]+)/?$    controller/cart-controller.php?action=a
 RewriteRule    ^updateCount/([0-9]+)/([0-9]+)/?$    controller/cart-controller.php?action=updateCount&id=$1&count=$2    [NC]
 RewriteRule    ^removeFromCart/([0-9]+)/?$    controller/cart-controller.php?action=removeFromCart&id=$1    [NC]
 RewriteRule    ^shopping-cart/    view/shopping-cart.php    [NC]
+RewriteRule    ^customer-info/    view/customer-info.php    [NC]
 
 #RewriteRule    ^home/    home.php    [NC]
 RewriteRule    ^page/([0-9]+)/?$    home.php?page=$1    [NC]

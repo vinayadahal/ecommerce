@@ -71,3 +71,31 @@ function grandTotal() {
     }
     $("#grand_total").html(grand_total);
 }
+
+function signup_validation() {
+    var num_element = $(".form_table :input[type='text']").length;
+    compare_password();
+    for (var i = 1; i <= num_element; i++) {
+        return check_null("id" + i);
+    }
+}
+
+function check_null(id) {
+    var value = $("#" + id).val();
+    if (value === "") {
+        $("#" + id).css({
+            "border-color": "#ff0000"
+        });
+        return false;
+    }
+}
+
+function compare_password() {
+    check_null("pass1");
+    check_null("pass2");
+    if ($("#pass1").val() === $("#pass2").val()) {
+        return true;
+    }
+    alert("Passwords donot match !!!")
+    return false;
+}

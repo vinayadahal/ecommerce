@@ -57,7 +57,7 @@ $grand_total = 0;
                 <td colspan="2"></td>
                 <td><strong>Grand Total: Rs.<span id="grand_total"><?php echo $grand_total; ?></span>/-</strong></td>
                 <td>
-                    <a href="checkout.php" class="btn btn-success btn-block">Checkout <i class="fa fa-check"></i>
+                    <a href="<?php echo base_url;?>/customer-info/" class="btn btn-success btn-block">Checkout <i class="fa fa-check"></i>
                     </a>
                 </td>
             </tr>
