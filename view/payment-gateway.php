@@ -51,13 +51,24 @@ $_SESSION['grand_total'] = 0;
                 <p>Email: <?php echo $custRow['email']; ?></p>
                 <p>Phone: <?php echo $custRow['phone']; ?></p>
                 <p>Address: <?php echo $custRow['address']; ?></p>
+                <p>Choose Your Payment Method: </p>
+                <p>
+                <form>
+                    <label class="radio-inline">
+                        <input type="radio" name="optradio" value="cod" checked="checked" />Cash on Delivery
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="optradio" value="esewa" />esewa
+                    </label>
+                </form>
+                </p>
             <?php } ?>
         </div>
         <div class="footBtn">
             <a href="<?php echo base_url; ?>" class="btn btn-warning">
                 <i class="fa fa-arrow-left"></i> Continue Shopping
             </a>
-            <a href="cartAction.php?action=placeOrder" class="btn btn-success orderBtn">
+            <a href="<?php echo base_url?>/order" class="btn btn-success orderBtn">
                 Place Order <i class="fa fa-download"></i>
             </a>
         </div>

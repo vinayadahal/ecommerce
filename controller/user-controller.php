@@ -15,8 +15,8 @@ $customer = array(
     'email' => $email,
     'phone' => $phone,
     'address' => $address,
-    'uname' => $uname,
-    'cpass' => $cpass
+    'username' => $uname,
+    'password' => md5($cpass)
 );
 array_push($_SESSION['customer_detail'], $customer); //pushes new element to array
 header("Location: " . base_url . "/payment-method/");

@@ -1,9 +1,51 @@
 <?php
 
+require_once '../config/site-config.php';
 require_once '../model/product.php';
 session_start();
 
-if (isset($_REQUEST['action'], $_REQUEST['id']) && !empty($_REQUEST['action']) && !empty($_REQUEST['id'])) {
+//logic for placing order
+if ($_REQUEST['action'] == 'placeOrder' && count($_SESSION['cart_items']) > 0 && count($_SESSION['customer_detail']) > 0) {
+    require_once '../model/user.php';
+    require_once '../model/order.php';
+
+    $cart_items = $_SESSION['cart_items'][0];
+
+    $customer_details = $_SESSION['customer_detail'][0];
+    $customer_id = (new user())->insert_customer($customer_details);
+
+    if (empty($customer_id)) {
+        header("Location: " . base_url);
+    }
+
+    $order_data = array(
+        "customer_id" => $customer_id,
+        "total_price" => $_SESSION['grand_total'],
+        "status" => 0
+    );
+
+    $order_id = (new order())->insert_order($order_data);
+
+    if (empty($order_id)) {
+        header("Location: " . base_url);
+    }
+
+    $order_items = array(
+        "order_id" => $order_id,
+        "product_id" => $cart_items['id'],
+        "quantity" => $cart_items['qty']
+    );
+
+
+    if ((new order())->insert_order_items($order_items)) {
+        header("Location: " . base_url . "/orderSuccess/");
+    } else {
+        header("Location: " . base_url);
+    }
+}
+
+//logic to handle cart actions
+if (isset($_REQUEST['action'], $_REQUEST['id'])) {
     if ($_REQUEST['action'] == 'addToCart' && !empty($_REQUEST['id'])) {
         $result = (new product())->list_product_condtion($_REQUEST['id']);
         foreach ($result as $row) {
@@ -13,8 +55,7 @@ if (isset($_REQUEST['action'], $_REQUEST['id']) && !empty($_REQUEST['action']) &
                 'price' => $row['price'],
                 'subtotal' => $row['price'],
                 'qty' => 1,
-                'max_quantity' => $row['quantity'],
-                'rowid' => md5($row['id'])
+                'max_quantity' => $row['quantity']
             );
         }
         addItem($itemData);
@@ -25,35 +66,11 @@ if (isset($_REQUEST['action'], $_REQUEST['id']) && !empty($_REQUEST['action']) &
     } elseif ($_REQUEST['action'] == 'removeFromCart' && !empty($_REQUEST['id'])) {
         $session_key_id = ($_REQUEST['id'] - 1);
         removeItem($session_key_id);
-    } elseif ($_REQUEST['action'] == 'placeOrder' && $cart->total_items() > 0 && !empty($_SESSION['sessCustomerID'])) {
-        // insert order details into database
-        $insertOrder = $db->query("INSERT INTO orders (customer_id, total_price, created) VALUES ('" . $_SESSION['sessCustomerID'] . "', '" . $cart->total() . "', '" . date("Y-m-d H:i:s") . "')");
-
-        if ($insertOrder) {
-            $orderID = $db->insert_id;
-            $sql = '';
-            // get cart items
-            $cartItems = $cart->contents();
-            foreach ($cartItems as $item) {
-                $sql .= "INSERT INTO order_items (order_id, product_id, quantity) VALUES ('" . $orderID . "', '" . $item['id'] . "', '" . $item['qty'] . "');";
-            }
-            // insert order items into database
-            $insertOrderItems = $db->multi_query($sql);
-
-            if ($insertOrderItems) {
-                $cart->destroy();
-                header("Location: orderSuccess.php?id=$orderID");
-            } else {
-                header("Location: checkout.php");
-            }
-        } else {
-            header("Location: checkout.php");
-        }
     } else {
-        header("Location: index.php");
+        header("Location: " . base_url);
     }
 } else {
-    header("Location: index.php");
+    header("Location: " . base_url);
 }
 
 function addItem($item_data) {

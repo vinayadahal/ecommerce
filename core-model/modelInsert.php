@@ -2,7 +2,7 @@
 
 class modelInsert {
 
-    public function insert($table, $col = NULL) {
+    public function insert($table, $col = NULL, $returnId = NULL) {
         $info = array_values($col);
         $field = "`" . implode("`,`", array_keys($col)) . "`";
         $cnt = count($col);
@@ -16,7 +16,6 @@ class modelInsert {
         for ($i = 0; $i < $cnt; $i++) {
             $bind->bindParam($i + 1, $info[$i]);
         }
-        $this->dbh = NULL; // closing DB connection
         try {
             $result = $bind->execute();
         } catch (Exception $ex) {
@@ -25,6 +24,10 @@ class modelInsert {
             }
             exit();
         }
+        if ($returnId != NULL && $returnId == TRUE) {
+            return $this->dbh->lastInsertId();
+        }
+        $this->dbh = NULL; // closing DB connection
         if ($result == 1) {
             return true;
         } else {

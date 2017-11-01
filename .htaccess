@@ -30,6 +30,8 @@ RewriteRule    ^signup/    view/customer-info.php    [NC]
 RewriteRule    ^cancel-all/([0-9]+)/?$    controller/cart-controller.php?action=clearSession    [NC]
 RewriteRule    ^getUserInfo/    controller/user-controller.php    [NC]
 RewriteRule    ^payment-method/    view/payment-gateway.php    [NC]
+RewriteRule    ^order/    controller/cart-controller.php?action=placeOrder    [NC]
+RewriteRule    ^orderSuccess/    view/order-success.php    [NC]
 
 #RewriteRule    ^home/    home.php    [NC]
 RewriteRule    ^page/([0-9]+)/?$    home.php?page=$1    [NC]

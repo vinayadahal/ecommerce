@@ -4,6 +4,7 @@ require_once '../model/product.php';
 $product = new product();
 require_once '../service/helper-method.php';
 session_start();
+//session_destroy();
 require_once './includes/header.php';
 ?>
 
