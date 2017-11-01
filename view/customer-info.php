@@ -1,10 +1,11 @@
 <?php
-require_once '../model/product.php';
+require_once '../config/site-config.php';
 require_once './includes/header.php';
+session_start();
 ?>
 <div class="container">
     <div class="form-container">
-        <form method="post" onsubmit="return signup_validation();">
+        <form method="post" onsubmit="return signup_validation();" action="<?php echo base_url?>/getUserInfo/">
             <h2>Please provide your information</h2><hr />
             <table class="form_table">
                 <tr>
@@ -53,12 +54,16 @@ require_once './includes/header.php';
                 <button type="submit" class="btn btn-primary form_btn">
                     <i class="fa fa-upload"></i> Submit
                 </button>
-                <button class="btn btn-danger form_btn" style="margin-left: 10px;" onclick="confirm('Do you want to discard your order?')">
-                    <i class="fa fa-close"></i> Cancel Order
-                </button>
+                <?php if (isset($_SESSION['cart_items']) && count($_SESSION['cart_items']) != 0) { ?>
+                    <button class="btn btn-danger form_btn" style="margin-left: 10px;" onclick="confirm('Do you want to discard your order?')">
+                        <i class="fa fa-close"></i> Cancel Order
+                    </button>
+                <?php } ?>
             </div>
             <br />
-            <label>Have an account? ! <a href="login.php">Sign In</a></label>
+            <label>Have an account? <a href="<?php echo base_url ?>/signin/">Sign In</a></label>
+            <br />
+            <br />
         </form>
     </div>
 </div>

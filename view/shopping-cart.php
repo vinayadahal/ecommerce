@@ -1,4 +1,5 @@
 <?php
+require_once '../config/site-config.php';
 require_once '../model/product.php';
 require_once './includes/header.php';
 session_start();
@@ -55,11 +56,14 @@ $grand_total = 0;
                     </a>
                 </td>
                 <td colspan="2"></td>
-                <td><strong>Grand Total: Rs.<span id="grand_total"><?php echo $grand_total; ?></span>/-</strong></td>
-                <td>
-                    <a href="<?php echo base_url;?>/customer-info/" class="btn btn-success btn-block">Checkout <i class="fa fa-check"></i>
-                    </a>
-                </td>
+                <?php if (isset($_SESSION['cart_items']) && count($_SESSION['cart_items']) != 0) { ?>
+                    <td><strong>Grand Total: Rs.<span id="grand_total"><?php echo $grand_total; ?></span>/-</strong></td>
+                    <td id="checkout_btn">
+                        <a href="<?php echo base_url; ?>/customer-info/" class="btn btn-success btn-block">Checkout <i class="fa fa-check"></i></a>
+                    </td>
+                <?php } else { ?>
+                    <td colspan="2"></td>
+                <?php } ?>
             </tr>
         </tfoot>
     </table>

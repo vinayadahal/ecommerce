@@ -55,12 +55,29 @@ function removeFromCart(url) {
             var item_count = $(".item").length;
             if (item_count === 0) {
                 $("#tbl_content").html("<tr><td colspan=\"5\"><p>Your cart is empty.....</p></td>");
+                $("#checkout_btn").after("<td colspan='2'></td>").remove();
+//                empty_session();
             }
         },
         failure: function (response) {
             console.log(response);
         }
     });
+}
+
+function empty_session() {
+    alert($(location).attr('href'));
+//    $.ajax({
+//        url: url,
+//        type: 'get',
+//        cache: false,
+//        success: function (response) {
+//            
+//        },
+//        failure: function (response) {
+//            console.log(response);
+//        }
+//    });
 }
 
 function grandTotal() {

@@ -18,7 +18,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="<?php echo base_url; ?>">Bakery</a>
+                <a class="navbar-brand" href="<?php echo base_url; ?>">
+                    <i class="fa fa-shopping-basket header_icons"></i> E-Commerce
+                </a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
@@ -39,22 +41,17 @@
                     <li>
                         <a href="<?php echo base_url; ?>/shopping-cart/" class="cart-link">
                             <i class="fa fa-shopping-cart header_icons"></i> Shopping Cart 
-                            <?php if (isset($_SESSION['cart_items'])) { ?>
+                            <?php if (isset($_SESSION['cart_items']) && count($_SESSION['cart_items']) != 0) { ?>
                                 <sup id="item_count" class="item_count" style="display: initial;"><?php echo count($_SESSION['cart_items']); ?></sup>
                             <?php } else { ?>
                                 <sup id="item_count" class="item_count"></sup>
                             <?php } ?>
                         </a>
                     </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-user header_icons" ></i> User Account 
-                            <span class="caret"></span>
+                    <li>
+                        <a href="<?php echo base_url; ?>/signin/">
+                            <i class="fa fa-sign-in header_icons" ></i> Sign In
                         </a>
-                        <ul class="dropdown-menu">
-                            <li role="separator" class="divider"></li>
-                            <li><a href="logout.php?logout=true">Logout</a></li>
-                        </ul>
                     </li>
                 </ul>
             </div>

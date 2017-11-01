@@ -25,6 +25,11 @@ RewriteRule    ^updateCount/([0-9]+)/([0-9]+)/?$    controller/cart-controller.p
 RewriteRule    ^removeFromCart/([0-9]+)/?$    controller/cart-controller.php?action=removeFromCart&id=$1    [NC]
 RewriteRule    ^shopping-cart/    view/shopping-cart.php    [NC]
 RewriteRule    ^customer-info/    view/customer-info.php    [NC]
+RewriteRule    ^signin/    view/login.php    [NC]
+RewriteRule    ^signup/    view/customer-info.php    [NC]
+RewriteRule    ^cancel-all/([0-9]+)/?$    controller/cart-controller.php?action=clearSession    [NC]
+RewriteRule    ^getUserInfo/    controller/user-controller.php    [NC]
+RewriteRule    ^payment-method/    view/payment-gateway.php    [NC]
 
 #RewriteRule    ^home/    home.php    [NC]
 RewriteRule    ^page/([0-9]+)/?$    home.php?page=$1    [NC]

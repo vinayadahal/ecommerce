@@ -2,7 +2,7 @@
 
 require_once '../model/product.php';
 session_start();
-//session_destroy();
+
 if (isset($_REQUEST['action'], $_REQUEST['id']) && !empty($_REQUEST['action']) && !empty($_REQUEST['id'])) {
     if ($_REQUEST['action'] == 'addToCart' && !empty($_REQUEST['id'])) {
         $result = (new product())->list_product_condtion($_REQUEST['id']);
@@ -63,7 +63,6 @@ function addItem($item_data) {
     } else {
         array_push($_SESSION['cart_items'], $item_data); //pushes new element to array
     }
-//    session_destroy();
 }
 
 function updateItemCount($array_id, $count) {
