@@ -1,4 +1,7 @@
 $(document).ready(function () {
+//    alert($("#product_title").text().length);
+    checkIndexPageNull();
+
 });
 
 
@@ -23,6 +26,7 @@ function ajax_addToCart(item_id, url) {
             $("#item_count").html(+value + +1);
         }
         $("#item_count").fadeIn(600);
+        checkIndexPageNull();
     });
 }
 
@@ -43,20 +47,21 @@ function update_itemCount(url, obj) {
 }
 
 function removeFromCart(url) {
-    var itemId = url.substr(url.length - 1);
+    var n = url.lastIndexOf('/');
+    var itemId = url.substring(n + 1);
     $.ajax({
         url: url,
         type: 'get',
         cache: false,
         success: function (response) {
+            var total_items = $(".item").length;
             $("#item" + itemId).fadeOut(600);
             $("#item" + itemId).remove();
-            grandTotal();
+            grandTotal(total_items);
             var item_count = $(".item").length;
             if (item_count === 0) {
                 $("#tbl_content").html("<tr><td colspan=\"5\"><p>Your cart is empty.....</p></td>");
                 $("#checkout_btn").after("<td colspan='2'></td>").remove();
-//                empty_session();
             }
         },
         failure: function (response) {
@@ -65,26 +70,20 @@ function removeFromCart(url) {
     });
 }
 
-function empty_session() {
-    alert($(location).attr('href'));
-//    $.ajax({
-//        url: url,
-//        type: 'get',
-//        cache: false,
-//        success: function (response) {
-//            
-//        },
-//        failure: function (response) {
-//            console.log(response);
-//        }
-//    });
-}
-
-function grandTotal() {
-    var item_count = $(".item").length;
+function grandTotal(total_items) {
+//    var item_count = $(".item").length;
+//    console.log("item count: " + item_count);
+//    console.log("skip id: " + item_count);
     var grand_total = 0;
-    for (var i = 1; i <= item_count; i++) {
+    for (var i = 1; i <= total_items; i++) {
+        if ($("#subtotal" + i).html() === undefined) {
+            console.log("Skipped: #subtotal" + i);
+            continue;
+        }
+//        console.log($("#subtotal" + i).html());
         grand_total = grand_total + parseInt($("#subtotal" + i).html());
+        console.log("I= " + i);
+
     }
     $("#grand_total").html(grand_total);
 }
@@ -115,4 +114,12 @@ function compare_password() {
     }
     alert("Passwords donot match !!!")
     return false;
+}
+
+
+function checkIndexPageNull() {
+    var item_count = $("#products .item").length;
+    if (item_count === 0) {
+        $("#products").html("Product(s) not found.....");
+    }
 }

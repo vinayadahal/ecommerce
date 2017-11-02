@@ -98,7 +98,7 @@ function removeItem($array_id) {
         echo "empty cart";
         return;
     }
-    $_SESSION['cart_items'] = array_values($_SESSION['cart_items']); // rearranging array before unset
+//    $_SESSION['cart_items'] = array_values($_SESSION['cart_items']); // rearranging array before unset
     unset($_SESSION['cart_items'][$array_id]);
-    $_SESSION['cart_items'] = array_values($_SESSION['cart_items']); // rearranging array after unset
+//    $_SESSION['cart_items'] = array_values($_SESSION['cart_items']); // rearranging array after unset
 }

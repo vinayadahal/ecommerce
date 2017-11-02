@@ -25,6 +25,42 @@
     border-left: 0;
 }
 
+.caption h4 {
+    /*color: #000;*/
+    /*    text-align: center;*/
+    padding: 5px 0px;
+    font-weight: bold;
+    font-size: 14px;
+    /*border-bottom: 1px solid #ccc;*/
+}
+
+.product_title{
+    height: 90px;
+    /*background-color: #ccc;*/
+}
+
+.product_offer{
+    height: 55px;
+    /*background-color: #777;*/
+    font-style: italic;
+    font-size: 12px;
+    font-weight: bold;
+    color: #ff884e;
+}
+
+.product_offer i{
+    font-size: 15px;
+}
+
+.price_btn{
+    /*background-color: #ccc;*/
+}
+
+.price_btn p{
+    font-size: 20px;
+    font-weight: bold;
+}
+
 .item_count{
     color: #fff;
     background-color: #ff0000;

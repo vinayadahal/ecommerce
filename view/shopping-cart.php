@@ -3,6 +3,9 @@ require_once '../config/site-config.php';
 require_once '../model/product.php';
 require_once './includes/header.php';
 session_start();
+if (!empty($_SESSION['cart_items']) && count($_SESSION['cart_items']) > 0) {
+    $_SESSION['cart_items'] = array_values($_SESSION['cart_items']); // rearranging array before unset
+}
 $grand_total = 0;
 ?>
 <div class="container">

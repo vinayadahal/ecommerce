@@ -1,70 +1,56 @@
--- phpMyAdmin SQL Dump
--- version 4.1.14
--- http://www.phpmyadmin.net
---
--- Host: 127.0.0.1
--- Generation Time: Nov 01, 2017 at 08:03 PM
--- Server version: 5.6.17
--- PHP Version: 5.5.12
+/*
+SQLyog Professional v12.09 (32 bit)
+MySQL - 5.7.19-0ubuntu0.16.04.1 : Database - ecommerce
+*********************************************************************
+*/
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
+/*!40101 SET NAMES utf8 */;
 
---
--- Database: `ecommerce`
---
+/*!40101 SET SQL_MODE=''*/;
 
--- --------------------------------------------------------
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`ecommerce` /*!40100 DEFAULT CHARACTER SET latin1 */;
 
---
--- Table structure for table `admins`
---
+USE `ecommerce`;
 
-CREATE TABLE IF NOT EXISTS `admins` (
+/*Table structure for table `admins` */
+
+DROP TABLE IF EXISTS `admins`;
+
+CREATE TABLE `admins` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `pass` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `admins`
---
+/*Data for the table `admins` */
 
-INSERT INTO `admins` (`id`, `username`, `email`, `pass`) VALUES
-(3, 'admin123', 'ashim.reno@gmail.com', '$2y$10$SACMM6JQnBN/nCMKjwTtWOUrq3agLw3myoEJ1v07llXUvPtXDFkiy'),
-(4, '12345', 'ash@gmail.com', '$2y$10$CELCOcQ.lP6Prad/yy9uVufNGLefG5HeMrWeCYL/L.D6pYnSP62H2');
+insert  into `admins`(`id`,`username`,`email`,`pass`) values (3,'admin123','ashim.reno@gmail.com','$2y$10$SACMM6JQnBN/nCMKjwTtWOUrq3agLw3myoEJ1v07llXUvPtXDFkiy'),(4,'12345','ash@gmail.com','$2y$10$CELCOcQ.lP6Prad/yy9uVufNGLefG5HeMrWeCYL/L.D6pYnSP62H2');
 
--- --------------------------------------------------------
+/*Table structure for table `categories` */
 
---
--- Table structure for table `categories`
---
+DROP TABLE IF EXISTS `categories`;
 
-CREATE TABLE IF NOT EXISTS `categories` (
+CREATE TABLE `categories` (
   `category_id` int(100) NOT NULL AUTO_INCREMENT,
   `category_title` text NOT NULL,
   PRIMARY KEY (`category_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `categories`
---
+/*Data for the table `categories` */
 
-INSERT INTO `categories` (`category_id`, `category_title`) VALUES
-(1, 'Hats'),
-(2, 'Boots'),
-(5, 'batfink'),
-(6, 'batman');
+insert  into `categories`(`category_id`,`category_title`) values (1,'Hats'),(2,'Boots'),(5,'batfink'),(6,'batman');
 
--- --------------------------------------------------------
+/*Table structure for table `customers` */
 
---
--- Table structure for table `customers`
---
+DROP TABLE IF EXISTS `customers`;
 
-CREATE TABLE IF NOT EXISTS `customers` (
+CREATE TABLE `customers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
@@ -75,84 +61,67 @@ CREATE TABLE IF NOT EXISTS `customers` (
   `address` text NOT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `customers`
---
+/*Data for the table `customers` */
 
-INSERT INTO `customers` (`id`, `username`, `email`, `password`, `firstname`, `lastname`, `phone`, `address`, `created`) VALUES
-(1, 'bidahal', 'vinayadahal@gmail.com', 'c81e728d9d4c2f636f067f89cc14862c', 'Vinaya', 'Dahal', '9860805361', 'Jorpati, Kathmadnu', '2017-11-02 00:42:45'),
-(2, 'erwerw', 'adsda', '7694f4a66316e53c8cdd9d9954bd611d', 'Ashim', 'Timilsina', '123213', 'qweqwe', '2017-11-02 00:44:53');
+insert  into `customers`(`id`,`username`,`email`,`password`,`firstname`,`lastname`,`phone`,`address`,`created`) values (1,'bidahal','vinayadahal@gmail.com','c81e728d9d4c2f636f067f89cc14862c','Vinaya','Dahal','9860805361','Jorpati, Kathmadnu','2017-11-02 00:42:45'),(2,'erwerw','adsda','7694f4a66316e53c8cdd9d9954bd611d','Ashim','Timilsina','123213','qweqwe','2017-11-02 00:44:53');
 
--- --------------------------------------------------------
+/*Table structure for table `order_items` */
 
---
--- Table structure for table `orders`
---
+DROP TABLE IF EXISTS `order_items`;
 
-CREATE TABLE IF NOT EXISTS `orders` (
+CREATE TABLE `order_items` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `order_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `quantity` int(5) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+/*Data for the table `order_items` */
+
+insert  into `order_items`(`id`,`order_id`,`product_id`,`quantity`) values (1,1,1,1),(2,2,1,1);
+
+/*Table structure for table `orders` */
+
+DROP TABLE IF EXISTS `orders`;
+
+CREATE TABLE `orders` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_id` int(11) NOT NULL,
   `total_price` float(10,2) NOT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `status` enum('1','0') NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `orders`
---
+/*Data for the table `orders` */
 
-INSERT INTO `orders` (`id`, `customer_id`, `total_price`, `created`, `status`) VALUES
-(1, 1, 16350.00, '2017-11-02 00:42:45', '0'),
-(2, 2, 1227067.00, '2017-11-02 00:44:53', '0');
+insert  into `orders`(`id`,`customer_id`,`total_price`,`created`,`status`) values (1,1,16350.00,'2017-11-02 00:42:45','0'),(2,2,1227067.00,'2017-11-02 00:44:53','0');
 
--- --------------------------------------------------------
+/*Table structure for table `products` */
 
---
--- Table structure for table `order_items`
---
+DROP TABLE IF EXISTS `products`;
 
-CREATE TABLE IF NOT EXISTS `order_items` (
+CREATE TABLE `products` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `order_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
-  `quantity` int(5) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
-
---
--- Dumping data for table `order_items`
---
-
-INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `quantity`) VALUES
-(1, 1, 1, 1),
-(2, 2, 1, 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `products`
---
-
-CREATE TABLE IF NOT EXISTS `products` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(200) NOT NULL,
+  `title` varchar(170) NOT NULL,
   `category_id` int(11) NOT NULL,
   `description` text NOT NULL,
   `price` float(10,2) NOT NULL,
-  `image` varchar(100) NOT NULL,
+  `image` varchar(255) NOT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `quantity` int(11) NOT NULL,
+  `offer` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `products`
---
+/*Data for the table `products` */
 
-INSERT INTO `products` (`id`, `title`, `category_id`, `description`, `price`, `image`, `created`, `quantity`) VALUES
-(1, 'John Cena', 1, 'Hat used by john cena.', 350.00, '433276.jpg', '0000-00-00 00:00:00', 10),
-(2, 'Mustang Boot', 2, 'Hand made, developed in Mustang', 8000.00, '433276.jpg', '0000-00-00 00:00:00', 3),
-(3, 'badass', 5, 'awdbagjsdghaKsdhasklhdkadhakj', 1218717.00, '433276.jpg', '0000-00-00 00:00:00', 6);
+insert  into `products`(`id`,`title`,`category_id`,`description`,`price`,`image`,`created`,`quantity`,`offer`) values (1,'Aorus X5 MD-KL4K3M 15.6\" 4K UHD G-SYNC Gaming Laptop Intel Core i7 7th Gen 7820HK (2.90 GHz) NVIDIA GeForce ',1,'Hat used by john cena.',350.00,'433276.jpg','0000-00-00 00:00:00',10,'Includes Destiny 2 Game w/ purchase, limited offer'),(2,'Huawei - Honor 6X Unlocked Smartphone with Dual Camera (5.5\" Gray, 32GB Storage 3GB RAM) US',2,'Hand made, developed in Mustang',8000.00,'433276.jpg','0000-00-00 00:00:00',3,'Includes Destiny 2 Game w/ purchase, limited offer'),(3,'badass',5,'awdbagjsdghaKsdhasklhdkadhakj',1218717.00,'433276.jpg','0000-00-00 00:00:00',6,NULL),(4,'John Cena',1,'Hat used by john cena.',350.00,'433276.jpg','0000-00-00 00:00:00',10,NULL),(5,'Mustang Boot',2,'Hand made, developed in Mustang',8000.00,'433276.jpg','0000-00-00 00:00:00',3,NULL),(6,'badass',5,'awdbagjsdghaKsdhasklhdkadhakj',1218717.00,'433276.jpg','0000-00-00 00:00:00',6,NULL),(7,'John Cena',1,'Hat used by john cena.',350.00,'433276.jpg','0000-00-00 00:00:00',10,NULL),(8,'Mustang Boot',2,'Hand made, developed in Mustang',8000.00,'433276.jpg','0000-00-00 00:00:00',3,NULL),(9,'badass',5,'awdbagjsdghaKsdhasklhdkadhakj',1218717.00,'433276.jpg','0000-00-00 00:00:00',6,NULL),(10,'John Cena',1,'Hat used by john cena.',350.00,'433276.jpg','0000-00-00 00:00:00',10,NULL),(11,'Mustang Boot',2,'Hand made, developed in Mustang',8000.00,'433276.jpg','0000-00-00 00:00:00',3,NULL),(12,'badass',5,'awdbagjsdghaKsdhasklhdkadhakj',1218717.00,'433276.jpg','0000-00-00 00:00:00',6,NULL);
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;

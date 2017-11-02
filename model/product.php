@@ -13,8 +13,8 @@ class product {
     }
 
     public function list_product() {
-        $col = array('id', 'title', 'image', 'description', 'price', 'category_id', 'quantity');
-        $this->model->select($col);
+//        $col = array('id', 'title', 'image', 'description', 'price', 'category_id', 'quantity');
+        $this->model->select("*");
         $this->model->from('products');
         return $this->model->get();
     }
