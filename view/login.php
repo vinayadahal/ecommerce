@@ -1,6 +1,6 @@
 <?php
 require_once '../config/site-config.php';
-require_once './includes/header.php';
+require_once './templates/header.php';
 ?>
 <div class="container">
     <div class="form-container">
@@ -24,4 +24,4 @@ require_once './includes/header.php';
     </div>
 </div>
 <?php
-require_once './includes/footer.php';
+require_once './templates/footer.php';

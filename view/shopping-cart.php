@@ -1,7 +1,7 @@
 <?php
 require_once '../config/site-config.php';
 require_once '../model/product.php';
-require_once './includes/header.php';
+require_once './templates/header.php';
 session_start();
 if (!empty($_SESSION['cart_items']) && count($_SESSION['cart_items']) > 0) {
     $_SESSION['cart_items'] = array_values($_SESSION['cart_items']); // rearranging array before unset
@@ -72,4 +72,4 @@ $grand_total = 0;
     </table>
 </div>
 <?php
-require_once './includes/footer.php';
+require_once './templates/footer.php';

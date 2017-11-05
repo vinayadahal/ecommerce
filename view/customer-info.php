@@ -1,6 +1,6 @@
 <?php
 require_once '../config/site-config.php';
-require_once './includes/header.php';
+require_once './templates/header.php';
 session_start();
 ?>
 <div class="container">
@@ -68,4 +68,4 @@ session_start();
     </div>
 </div>
 <?php
-require_once './includes/footer.php';
+require_once './templates/footer.php';

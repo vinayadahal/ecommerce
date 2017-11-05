@@ -1,5 +1,5 @@
 <?php
-
+require_once '../config/credentials.php';
 require_once '../core-model/model.php';
 
 //require_once '../../model/modelInsert.php';

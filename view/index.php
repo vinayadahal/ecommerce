@@ -10,7 +10,7 @@ if (!empty($_SESSION['cart_items']) && count($_SESSION['cart_items']) > 0) {
 }
 
 //session_destroy();
-require_once './includes/header.php';
+require_once './templates/header.php';
 ?>
 
 <div class="container">
@@ -61,4 +61,4 @@ require_once './includes/header.php';
     </div>
 </div>
 <?php
-require_once './includes/footer.php';
+require_once './templates/footer.php';

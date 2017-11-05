@@ -35,7 +35,6 @@
                         <input type="text" class="form-control searchBarInput" placeholder="Search...">
                         <button type="submit" class="btn btn-default searchBarButton" ><i class="fa fa-search"></i></button>
                     </div>
-
                 </form>
                 <ul class="nav navbar-nav navbar-right">
                     <li>

@@ -1,6 +1,5 @@
 <?php
 
-require_once '../config/credentials.php';
 require_once 'modelInsert.php';
 
 class model extends modelInsert {

@@ -1,8 +1,8 @@
 <?php
 
+require_once '../config/credentials.php';
 require_once '../model/model.php';
 
-//require_once '../../model/modelInsert.php';
 
 class cart {
 
