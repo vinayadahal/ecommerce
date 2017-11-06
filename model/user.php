@@ -1,4 +1,5 @@
 <?php
+
 require_once '../config/credentials.php';
 require_once '../core-model/model.php';
 
@@ -14,6 +15,14 @@ class user {
 
     public function insert_customer($col_val) {
         return $this->model->insert("customers", $col_val, TRUE);
+    }
+
+    public function get_user_id($id) {
+        $this->model->select("*");
+        $this->model->from('customers');
+        $this->model->where('id', $id);
+        $this->model->limit(1);
+        return $this->model->get();
     }
 
     public function get_customer_condtion($email) {

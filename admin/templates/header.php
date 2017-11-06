@@ -39,6 +39,11 @@
                             <i class="fa fa-truck header_icons"></i> Products
                         </a>
                     </li>
+                    <li>
+                        <a href="<?php echo base_url; ?>/admin/orders">
+                            <i class="fa fa-ticket header_icons"></i> Order Details
+                        </a>
+                    </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <!--<li></li>-->

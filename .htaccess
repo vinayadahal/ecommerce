@@ -44,6 +44,16 @@ RewriteRule    ^admin/editProduct/([0-9]+)/?    admin/editProducts.php?target=ed
 RewriteRule    ^admin/updateProduct/    admin/listProducts.php?target=updateProduct   [NC,L]
 RewriteRule    ^admin/deleteProduct/([0-9]+)/?$    admin/listProducts.php?target=deleteProduct&id=$1   [NC,L]
 
+#order navigation
+RewriteRule    ^admin/orders/    admin/listOrder.php    [NC,L]
+RewriteRule    ^admin/showOrders/([0-9]+)/?    admin/showOrder.php?target=showOrder&id=$1   [NC,L]
+#RewriteRule    ^admin/viewOrderDetails/([0-9]+)/?    admin/viewOrderDetails.php?target=viewOrderDetails&id=$1   [NC,L]
+#RewriteRule    ^admin/createProduct/    admin/createProducts.php   [NC,L]
+#RewriteRule    ^admin/addProduct/    admin/listProducts.php?target=addProduct   [NC,L]
+#RewriteRule    ^admin/editProduct/([0-9]+)/?    admin/editProducts.php?target=editProduct&id=$1    [NC,L]
+#RewriteRule    ^admin/updateProduct/    admin/listProducts.php?target=updateProduct   [NC,L]
+#RewriteRule    ^admin/deleteProduct/([0-9]+)/?$    admin/listProducts.php?target=deleteProduct&id=$1   [NC,L]
+
 #RewriteRule    ^home/    home.php    [NC]
 #RewriteRule    ^page/([0-9]+)/?$    home.php?page=$1    [NC]
 #RewriteRule    ^error/    error.php    [NC]
