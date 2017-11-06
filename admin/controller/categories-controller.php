@@ -1,19 +1,23 @@
 <?php
 
-require_once '../../config/site-config.php';
-require_once '../../model/categories.php';
-require_once '../../service/helper-method.php'; // write some if login check
+require_once '../config/site-config.php';
+require_once '../model/categories.php';
+require_once '../service/helper-method.php'; // write some if login check
 
 if (!isset($_REQUEST['target'])) {
     $result = (new categories())->list_categories();
 }
 
+if (isset($_REQUEST['target']) && $_REQUEST['target'] == 'addCategory') {
+    $category_name = htmlspecialchars($_POST['category_name']);
+    $result = (new categories())->add_category(array("category_title" => $category_name));
+    header("Location: " . base_url . "/admin/categories");
+}
+
 if (isset($_REQUEST['id']) && $_REQUEST['target'] == 'editCategory') {
     $id = htmlspecialchars($_REQUEST['id']);
     $result = (new categories())->get_category($id);
-    foreach ($result as $items) {
-        require_once '../categories/edit.php';
-    }
+    $items = $result[0];
 }
 
 if (isset($_REQUEST['target']) && $_REQUEST['target'] == 'updateCategory') {

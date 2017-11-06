@@ -34,7 +34,7 @@ require_once './templates/header.php';
                 <div class="thumbnail" >
                     <div class="caption ">
                         <div class="thumbnail">
-                            <img src="<?php echo base_url; ?>/admin_area/images/<?php echo $row["image"]; ?>" alt="item image">
+                            <img src="<?php echo base_url; ?>/admin/images/<?php echo $row["image"]; ?>" alt="item image">
                         </div>
                         <div id="product_title" class="product_title">
                             <h4 class="list-group-item-heading"><?php echo $row["title"]; ?></h4>

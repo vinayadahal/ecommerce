@@ -1,12 +1,3 @@
-#RewriteEngine on
-#RewriteCond %{REQUEST_URI}  !(\.png|\.jpg|\.gif|\.jpeg|\.bmp)$
-#RewriteCond %{REQUEST_URI}  !(\.css|\.js|\.eot|\.svg|\.ttf|\.woff|\.php)$
-# RewriteCond $1 !^(index\.php|images|robots\.txt)
-# RewriteRule ^(.*)$ view/$1 [L]
-
-
-
-
 #<IfModule mod_rewrite.c>
 
 #deny from all
@@ -37,12 +28,21 @@ RewriteRule    ^orderSuccess/    view/order-success.php    [NC]
 RewriteRule    ^admin/$    admin/index.php    [NC,L]
 RewriteRule    ^admin/home/    admin/index.php    [NC,L]
 
-RewriteRule    ^admin/categories/    admin/categories/home.php    [NC,L]
-RewriteRule    ^admin/createCategory/    admin/categories/create.php   [NC,L]
-RewriteRule    ^admin/addCategory/    admin/controller/categories-controller.php?target=addCategory   [NC,L]
-RewriteRule    ^admin/editCategory/([0-9]+)/?    admin/controller/categories-controller.php?target=editCategory&id=$1    [NC,L]
-RewriteRule    ^admin/updateCategory/    admin/controller/categories-controller.php?target=updateCategory   [NC,L]
-RewriteRule    ^admin/deleteCategory/([0-9]+)/?$    admin/controller/categories-controller.php?target=deleteCategory&id=$1   [NC,L]
+#categories navigation
+RewriteRule    ^admin/categories/    admin/listCategories.php    [NC,L]
+RewriteRule    ^admin/createCategory/    admin/createCategories.php   [NC,L]
+RewriteRule    ^admin/addCategory/    admin/listCategories.php?target=addCategory   [NC,L]
+RewriteRule    ^admin/editCategory/([0-9]+)/?    admin/editCategories.php?target=editCategory&id=$1    [NC,L]
+RewriteRule    ^admin/updateCategory/    admin/listCategories.php?target=updateCategory   [NC,L]
+RewriteRule    ^admin/deleteCategory/([0-9]+)/?$    admin/listCategories.php?target=deleteCategory&id=$1   [NC,L]
+
+#product navigation
+RewriteRule    ^admin/products/    admin/listProducts.php    [NC,L]
+RewriteRule    ^admin/createProduct/    admin/createProducts.php   [NC,L]
+RewriteRule    ^admin/addProduct/    admin/listProducts.php?target=addProduct   [NC,L]
+RewriteRule    ^admin/editProduct/([0-9]+)/?    admin/editProducts.php?target=editProduct&id=$1    [NC,L]
+RewriteRule    ^admin/updateProduct/    admin/listProducts.php?target=updateProduct   [NC,L]
+RewriteRule    ^admin/deleteProduct/([0-9]+)/?$    admin/listProducts.php?target=deleteProduct&id=$1   [NC,L]
 
 #RewriteRule    ^home/    home.php    [NC]
 #RewriteRule    ^page/([0-9]+)/?$    home.php?page=$1    [NC]

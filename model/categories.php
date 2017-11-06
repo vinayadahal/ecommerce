@@ -1,7 +1,7 @@
 <?php
 
-require_once '../../config/credentials.php';
-require_once '../../core-model/model.php';
+require_once '../config/credentials.php';
+require_once '../core-model/model.php';
 
 class categories {
 
@@ -23,6 +23,10 @@ class categories {
         $this->model->where('category_id', $id);
         $this->model->limit(1);
         return $this->model->get();
+    }
+
+    public function add_category($col_val) {
+        return $this->model->insert("categories", $col_val);
     }
 
     public function update_category($colname, $value, $id) {

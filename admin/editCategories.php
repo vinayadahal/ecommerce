@@ -1,7 +1,7 @@
 <?php
-require_once '../../config/site-config.php';
-require_once '../templates/header.php';
-//require_once '../../controller/categories-controller.php';
+require_once '../config/site-config.php';
+require_once './templates/header.php';
+require_once './controller/categories-controller.php';
 ?>
 <div class="container">
     <div class="form-container">
@@ -19,7 +19,12 @@ require_once '../templates/header.php';
                 <i class="fa fa-upload"></i> Update
             </button>
         </form>
+        <a href="<?php echo base_url ?>/admin/categories">
+            <button class="btn btn-danger form_btn" style="margin-left: 10px;">
+                <i class="fa fa-close"></i> Cancel
+            </button>
+        </a>
     </div>
 </div>
 <?php
-require_once '../templates/footer.php';
+require_once './templates/footer.php';

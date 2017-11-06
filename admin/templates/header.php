@@ -24,9 +24,19 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active">
+                    <li>
                         <a href="<?php echo base_url; ?>/admin">
                             <i class="fa fa-home header_icons"></i> Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url; ?>/admin/categories">
+                            <i class="fa fa-tasks header_icons"></i> Categories
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url; ?>/admin/products">
+                            <i class="fa fa-truck header_icons"></i> Products
                         </a>
                     </li>
                 </ul>

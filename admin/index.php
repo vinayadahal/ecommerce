@@ -11,7 +11,7 @@ require_once './templates/header.php';
     </div>
     <div class="item col-lg-3">
         <div class="thumbnail">
-            <a href="#" class="dashboard_icons"><i class="fa fa-truck fa-5x" ></i> Products</a>
+            <a href="<?php echo base_url?>/admin/products/" class="dashboard_icons"><i class="fa fa-truck fa-5x" ></i> Products</a>
         </div>
     </div>
     <div class="item col-lg-3">

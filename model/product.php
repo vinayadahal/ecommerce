@@ -1,4 +1,5 @@
 <?php
+
 require_once '../config/credentials.php';
 require_once '../core-model/model.php';
 
@@ -13,7 +14,6 @@ class product {
     }
 
     public function list_product() {
-//        $col = array('id', 'title', 'image', 'description', 'price', 'category_id', 'quantity');
         $this->model->select("*");
         $this->model->from('products');
         return $this->model->get();
@@ -34,6 +34,36 @@ class product {
         $this->model->where('category_id', $category_id);
         $this->model->limit('1');
         return $this->model->get();
+    }
+
+    public function get_all_category() {
+        $this->model->select("*");
+        $this->model->from('categories');
+        return $this->model->get();
+    }
+
+    public function get_product($id) {
+        $this->model->select("*");
+        $this->model->from('products');
+        $this->model->where('id', $id);
+        $this->model->limit(1);
+        return $this->model->get();
+    }
+
+    public function add_product($col_val) {
+        return $this->model->insert("products", $col_val);
+    }
+
+    public function update_product($col, $id) {
+        $this->model->where("id", $id);
+        return $this->model->update("products", $col);
+    }
+
+    public function delete_product($id, $value) {
+        $this->model->delete();
+        $this->model->from("products");
+        $this->model->where($id, $value);
+        return $this->model->remove();
     }
 
 }
