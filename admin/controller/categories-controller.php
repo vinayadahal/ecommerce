@@ -3,6 +3,9 @@
 require_once '../config/site-config.php';
 require_once '../model/categories.php';
 require_once '../service/helper-method.php'; // write some if login check
+if (!checkLogin()) {
+    header("Location: " . base_url . "/admin/login");
+}
 
 if (!isset($_REQUEST['target'])) {
     $result = (new categories())->list_categories();

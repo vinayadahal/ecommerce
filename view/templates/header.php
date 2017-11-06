@@ -30,12 +30,12 @@
                         </a>
                     </li>
                 </ul>
-                <form class="navbar-form navbar-left">
+<!--                <form class="navbar-form navbar-left">
                     <div class="form-group">
                         <input type="text" class="form-control searchBarInput" placeholder="Search...">
                         <button type="submit" class="btn btn-default searchBarButton" ><i class="fa fa-search"></i></button>
                     </div>
-                </form>
+                </form>-->
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <a href="<?php echo base_url; ?>/shopping-cart/" class="cart-link">

@@ -100,10 +100,18 @@ class model extends modelInsert {
             if ($distinct != 'DISTINCT' && $distinct != 'distinct' && $distinct != NULL) {
                 $this->queryMistake($distinct);
             } else {
-                $query = "SELECT " . $distinct . ' ' . $field;
-                $this->select = $query;
+                $this->select_distinct($field, $distinct);
             }
         }
+    }
+
+    public function select_distinct($field, $distinct) {
+        if (isset($distinct)) {
+            $query = "SELECT " . $distinct . '(' . $field . ')';
+        } else {
+            $query = "SELECT " . ' ' . $field;
+        }
+        $this->select = $query;
     }
 
     public function delete() {
@@ -155,6 +163,7 @@ class model extends modelInsert {
     public function get() {
         $where = $this->checkWhere();
         $query = $this->select . $this->from . $where . $this->limit;
+//        echo $query;
         $this->loadDatabase();
         $bind = $this->dbh->prepare($query);
         $this->dbh = NULL; // closing DB connection

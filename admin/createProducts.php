@@ -1,7 +1,7 @@
 <?php
 require_once '../config/site-config.php';
-require_once './templates/header.php';
 require_once './controller/products-controller.php';
+require_once './templates/header.php';
 ?>
 <div class="container">
     <div class="form-container">
@@ -54,7 +54,7 @@ require_once './controller/products-controller.php';
             </table>
             <hr/>
             <button type="submit" class="btn btn-primary form_btn">
-                <i class="fa fa-upload"></i> Update
+                <i class="fa fa-upload"></i> Create
             </button>
         </form>
         <a href="<?php echo base_url ?>/admin/products">

@@ -6,6 +6,9 @@ require_once '../model/product.php';
 require_once '../model/categories.php';
 require_once '../model/user.php';
 require_once '../service/helper-method.php'; // write some if login check
+if (!checkLogin()) {
+    header("Location: " . base_url . "/admin/login");
+}
 
 if (!isset($_REQUEST['target'])) {
     $order = new order();
@@ -14,64 +17,33 @@ if (!isset($_REQUEST['target'])) {
     foreach ($result as $order_items) {
         $orders = $order->get_order_details($order_items['order_id']);
         foreach ($orders as $items) {
-            $customer_details = (new user())->get_user_id($items['id']);
-            $customer_order[$i++] = array(
-                'order_id' => $order_items['order_id'],
-                'total_price' => $items['total_price'],
-                'customer_name' => $customer_details[0]['firstname'] . " " . $customer_details[0]['lastname']
-            );
+            if ($items['status'] == 0) {
+                $customer_details = (new user())->get_user_id($items['customer_id']);
+                $customer_order[$i++] = array(
+                    'order_id' => $order_items['order_id'],
+                    'total_price' => $items['total_price'],
+                    'customer_name' => $customer_details[0]['firstname'] . " " . $customer_details[0]['lastname']
+                );
+            }
         }
     }
 }
 
 if (isset($_REQUEST['id']) && $_REQUEST['target'] == 'showOrder') {
+    $id = $_REQUEST['id'];
     $order = new order();
     $product = new product();
+    $user = new user();
     $i = 0;
-    $result = $order->get_product_id(htmlspecialchars($_REQUEST['id']));
-    $quantity = $result[0]['quantity'];
-    $product_id = $result[0]['product_id'];
-//    var_dump($result);
-    $product_details = $product->get_product($product_id);
-    //    var_dump($prd);
-//    foreach ($result as $order_items) {
-//        $orders = $order->get_order_details($order_items['order_id']);
-//        foreach ($orders as $items) {
-//            $customer_details = (new user())->get_user_id($items['id']);
-//            $customer_order[$i++] = array(
-//                'order_id' => $order_items['order_id'],
-//                'total_price' => $items['total_price'],
-//                'customer_name' => $customer_details[0]['firstname'] . " " . $customer_details[0]['lastname']
-//            );
-//        }
+    $result_product = $order->get_product_id(htmlspecialchars($_REQUEST['id']));
+    $result_order_cust_id = $order->get_order_details(htmlspecialchars($_REQUEST['id']));
+    $result_customer = $user->get_user_id($result_order_cust_id[0]['customer_id']);
+}
+
+if (isset($_REQUEST['target']) && $_REQUEST['target'] == 'deliverOrder') {
+    $order_id = htmlspecialchars($_GET['id']);
+    $result = (new order())->update_order_status("status", '1', $order_id);
+//    if ($result) {
+//        header("Location: " . base_url . "/admin/orders/");
 //    }
 }
-
-if (isset($_REQUEST['target']) && $_REQUEST['target'] == 'addCategory') {
-    $category_name = htmlspecialchars($_POST['category_name']);
-    $result = (new categories())->add_category(array("category_title" => $category_name));
-    header("Location: " . base_url . "/admin/categories");
-}
-
-if (isset($_REQUEST['id']) && $_REQUEST['target'] == 'editCategory') {
-    $id = htmlspecialchars($_REQUEST['id']);
-    $result = (new categories())->get_category($id);
-    $items = $result[0];
-}
-
-if (isset($_REQUEST['target']) && $_REQUEST['target'] == 'updateCategory') {
-    $category = htmlspecialchars($_POST['category_id']);
-    $category_name = htmlspecialchars($_POST['category_name']);
-    $result = (new categories())->update_category("category_title", $category_name, $category);
-    header("Location: " . base_url . "/admin/categories");
-}
-
-if (isset($_REQUEST['target']) && $_REQUEST['target'] == 'deleteCategory') {
-    $category = htmlspecialchars($_GET['id']);
-    $result = (new categories())->delete_category("category_id", $category);
-    if ($result) {
-        header("Location: " . base_url . "/admin/categories");
-    }
-}
-
-

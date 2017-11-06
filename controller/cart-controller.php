@@ -9,8 +9,6 @@ if ($_REQUEST['action'] == 'placeOrder' && count($_SESSION['cart_items']) > 0 &&
     require_once '../model/user.php';
     require_once '../model/order.php';
 
-    $cart_items = $_SESSION['cart_items'][0];
-
     $customer_details = $_SESSION['customer_detail'][0];
     $customer_id = (new user())->insert_customer($customer_details);
 
@@ -29,16 +27,18 @@ if ($_REQUEST['action'] == 'placeOrder' && count($_SESSION['cart_items']) > 0 &&
     if (empty($order_id)) {
         header("Location: " . base_url);
     }
-
-    $order_items = array(
-        "order_id" => $order_id,
-        "product_id" => $cart_items['id'],
-        "quantity" => $cart_items['qty']
-    );
-
-
-    if ((new order())->insert_order_items($order_items)) {
+    $cart_items = $_SESSION['cart_items'];
+    foreach ($cart_items as $products) {
+        $order_items = array(
+            "order_id" => $order_id,
+            "product_id" => $products['id'],
+            "quantity" => $products['qty']
+        );
+        $response = (new order())->insert_order_items($order_items);
+    }
+    if ($response) {
         header("Location: " . base_url . "/orderSuccess/");
+        unset($_SESSION['cart_items']);
     } else {
         header("Location: " . base_url);
     }

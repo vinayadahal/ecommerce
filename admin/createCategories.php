@@ -1,5 +1,6 @@
 <?php
 require_once '../config/site-config.php';
+require_once './controller/categories-controller.php';
 require_once './templates/header.php';
 ?>
 <div class="container">

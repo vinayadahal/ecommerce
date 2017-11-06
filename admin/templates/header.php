@@ -22,45 +22,46 @@
                     <i class="fa fa-shopping-basket header_icons"></i> E-Commerce
                 </a>
             </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="<?php echo base_url; ?>/admin">
-                            <i class="fa fa-home header_icons"></i> Home
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url; ?>/admin/categories">
-                            <i class="fa fa-tasks header_icons"></i> Categories
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url; ?>/admin/products">
-                            <i class="fa fa-truck header_icons"></i> Products
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url; ?>/admin/orders">
-                            <i class="fa fa-ticket header_icons"></i> Order Details
-                        </a>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <!--<li></li>-->
-<!--                        <a href="<?php echo base_url; ?>/signin/">
-                            <i class="fa fa-sign-in header_icons" ></i> Sign In
-                        </a>-->
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
-                            <i class="fa fa-user header_icons"></i> username <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"><i class="fa fa-cog header_icons"></i> Setting</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+            <?php if (!empty($_SESSION['username'])) { ?>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="<?php echo base_url; ?>/admin">
+                                <i class="fa fa-home header_icons"></i> Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url; ?>/admin/categories">
+                                <i class="fa fa-tasks header_icons"></i> Categories
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url; ?>/admin/products">
+                                <i class="fa fa-truck header_icons"></i> Products
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url; ?>/admin/orders">
+                                <i class="fa fa-ticket header_icons"></i> Order Details
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url; ?>/admin/users">
+                                <i class="fa fa-users header_icons"></i> Users
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                                <i class="fa fa-user header_icons"></i> <?php echo ucfirst($_SESSION['username']); ?> <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="<?php echo base_url?>/admin/logoutUser/"><i class="fa fa-power-off"></i> Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            <?php } ?>
         </div>
     </nav>

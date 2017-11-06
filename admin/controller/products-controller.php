@@ -3,6 +3,9 @@
 require_once '../config/site-config.php';
 require_once '../model/product.php';
 require_once '../service/helper-method.php'; // write some if login check
+if (!checkLogin()) {
+    header("Location: " . base_url . "/admin/login");
+}
 
 if (!isset($_REQUEST['target'])) {
     $result = (new product())->list_product();
@@ -31,7 +34,6 @@ if (isset($_REQUEST['id']) && $_REQUEST['target'] == 'editProduct') {
     $id = htmlspecialchars($_REQUEST['id']);
     $result = (new product())->get_product($id);
     $items = $result[0];
-//    var_dump($items);
 }
 
 if (isset($_REQUEST['target']) && $_REQUEST['target'] == 'updateProduct') {
@@ -39,16 +41,28 @@ if (isset($_REQUEST['target']) && $_REQUEST['target'] == 'updateProduct') {
         $filteredKey = htmlspecialchars($key);
         $$filteredKey = htmlspecialchars($value);
     }
-    $imageFileName = htmlspecialchars(image_uploader());
-    $col_val = array(
-        'title' => $name,
-        'category_id' => $category_id,
-        'description' => $description,
-        'offer' => $offer,
-        'quantity' => $quantity,
-        'price' => $price,
-        'image' => $imageFileName
-    );
+
+    if (!empty($_FILES["imageFile"]["name"])) {
+        $imageFileName = htmlspecialchars(image_uploader());
+        $col_val = array(
+            'title' => $name,
+            'category_id' => $category_id,
+            'description' => $description,
+            'offer' => $offer,
+            'quantity' => $quantity,
+            'price' => $price,
+            'image' => $imageFileName
+        );
+    } else {
+        $col_val = array(
+            'title' => $name,
+            'category_id' => $category_id,
+            'description' => $description,
+            'offer' => $offer,
+            'quantity' => $quantity,
+            'price' => $price
+        );
+    }
     $result = (new product())->update_product($col_val, $product_id);
     header("Location: " . base_url . "/admin/products");
 }
@@ -62,7 +76,6 @@ if (isset($_REQUEST['target']) && $_REQUEST['target'] == 'deleteProduct') {
 }
 
 function image_uploader() {
-    echo "Image uploader";
     require_once '../rootDirSet.php';
     $target_dir = rootDir . "/admin/images/";
     $target_file = $target_dir . basename($_FILES["imageFile"]["name"]);

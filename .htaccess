@@ -24,6 +24,10 @@ RewriteRule    ^payment-method/    view/payment-gateway.php    [NC]
 RewriteRule    ^order/    controller/cart-controller.php?action=placeOrder    [NC]
 RewriteRule    ^orderSuccess/    view/order-success.php    [NC]
 
+#login navigation
+RewriteRule    ^admin/login/$    admin/login.php    [NC,L]
+RewriteRule    ^admin/logoutUser/    admin/controller/login-controller.php?target=logoutUser   [NC,L]
+
 #admin navigation
 RewriteRule    ^admin/$    admin/index.php    [NC,L]
 RewriteRule    ^admin/home/    admin/index.php    [NC,L]
@@ -47,6 +51,16 @@ RewriteRule    ^admin/deleteProduct/([0-9]+)/?$    admin/listProducts.php?target
 #order navigation
 RewriteRule    ^admin/orders/    admin/listOrder.php    [NC,L]
 RewriteRule    ^admin/showOrders/([0-9]+)/?    admin/showOrder.php?target=showOrder&id=$1   [NC,L]
+RewriteRule    ^admin/deliverOrder/([0-9]+)/?    admin/listOrder.php?target=deliverOrder&id=$1   [NC,L]
+
+#user navigation
+RewriteRule    ^admin/users/    admin/listUser.php    [NC,L]
+RewriteRule    ^admin/createUser/    admin/createUser.php   [NC,L]
+RewriteRule    ^admin/addUser/    admin/listUser.php?target=addUser   [NC,L]
+RewriteRule    ^admin/editUser/([0-9]+)/?    admin/editUser.php?target=editUser&id=$1    [NC,L]
+RewriteRule    ^admin/updateUser/    admin/listUser.php?target=updateUser   [NC,L]
+RewriteRule    ^admin/deleteUser/([0-9]+)/?$    admin/listUser.php?target=deleteUser&id=$1   [NC,L]
+
 #RewriteRule    ^admin/viewOrderDetails/([0-9]+)/?    admin/viewOrderDetails.php?target=viewOrderDetails&id=$1   [NC,L]
 #RewriteRule    ^admin/createProduct/    admin/createProducts.php   [NC,L]
 #RewriteRule    ^admin/addProduct/    admin/listProducts.php?target=addProduct   [NC,L]

@@ -1,19 +1,19 @@
 <?php
 require_once '../config/site-config.php';
-require_once './templates/header.php';
 require_once './controller/products-controller.php';
+require_once './templates/header.php';
 ?>
 <div class="container">
     <h1>Products List</h1>
     <a href="<?php echo base_url ?>/admin/createProduct/" class="btn btn-success" style="float: right;">
-        <i class="fa fa-plus"></i> Add Category
+        <i class="fa fa-plus"></i> Add Product
     </a>
     <table class="table">
         <thead>
             <tr>
                 <th>S.No.</th>
-                <th>Product Name</th>
-                <th>Product Image</th>
+                <th>Image</th>
+                <th>Name</th>
                 <th>Category</th>
                 <th>Description</th>
                 <th>Offer</th>
@@ -30,8 +30,8 @@ require_once './controller/products-controller.php';
                 ?>
                 <tr class="item">
                     <td><?php echo $i++; ?></td>
+                    <td><img src="<?php echo base_url; ?>/admin/images/<?php echo $items['image']; ?>" width="100"/></td>
                     <td><?php echo $items['title']; ?></td>
-                    <td><img src="<?php echo base_url;?>/admin/images/<?php echo $items['image']; ?>" width="100"/></td>
                     <td><?php echo $category_name[0]['category_title']; ?></td>
                     <td><?php echo $items['description']; ?></td>
                     <td><?php echo $items['offer']; ?></td>

@@ -29,16 +29,16 @@ class order {
     }
 
     public function get_order_id() {
-        $this->model->select("*");
+        $col = array("order_id");
+        $this->model->select($col, "DISTINCT");
         $this->model->from('order_items');
         return $this->model->get();
     }
-    
+
     public function get_product_id($id) {
         $this->model->select("*");
         $this->model->from('order_items');
-        $this->model->where('id', $id);
-        $this->model->limit(1);
+        $this->model->where('order_id', $id);
         return $this->model->get();
     }
 
@@ -48,6 +48,12 @@ class order {
         $this->model->where('id', $id);
         $this->model->limit(1);
         return $this->model->get();
+    }
+
+    public function update_order_status($colname, $value, $id) {
+        $col = array($colname => $value);
+        $this->model->where("customer_id", $id);
+        return $this->model->update("orders", $col);
     }
 
 }

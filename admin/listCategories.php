@@ -1,7 +1,7 @@
 <?php
 require_once '../config/site-config.php';
-require_once './templates/header.php';
 require_once './controller/categories-controller.php';
+require_once './templates/header.php';
 ?>
 <div class="container">
     <h1>Category List</h1>
