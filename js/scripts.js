@@ -1,7 +1,7 @@
+var total_items;
 $(document).ready(function () {
-//    alert($("#product_title").text().length);
     checkIndexPageNull();
-
+    total_items = $(".item").length;
 });
 
 
@@ -54,7 +54,7 @@ function removeFromCart(url) {
         type: 'get',
         cache: false,
         success: function (response) {
-            var total_items = $(".item").length;
+//            var total_items = $(".item").length;
             $("#item" + itemId).fadeOut(600);
             $("#item" + itemId).remove();
             grandTotal(total_items);
